@@ -14,5 +14,6 @@ func Server() *gin.Engine {
 	})
 	engine.POST("/orders", handlers.CreateOrder)
 	engine.GET("/orders", handlers.GetAllOrder)
+	engine.DELETE("/orders/:id", handlers.DeleteOrder)
 	return engine
 }

@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"fmt"
+
 	"github.com/Rickykn/assignment-2-hactiv8.git/database"
 	"github.com/Rickykn/assignment-2-hactiv8.git/models"
 	"gorm.io/gorm"
@@ -43,4 +45,11 @@ func GetOrder() []*models.Order {
 
 	return orders
 
+}
+
+func DeleteOrder(id int) int64 {
+	db := database.Get()
+	fmt.Println(id)
+	result := db.Delete(&models.Order{}, id)
+	return result.RowsAffected
 }

@@ -1,7 +1,7 @@
 package models
 
 type Item struct {
-	Item_id     int    `json:"id" gorm:"primary_key"`
+	Item_id     int    `json:"item_id" gorm:"primary_key"`
 	Item_code   string `json:"itemCode"`
 	Description string `json:"description"`
 	Quantity    int    `json:"quantity"`

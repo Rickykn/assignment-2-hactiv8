@@ -3,10 +3,10 @@ package models
 import "time"
 
 type Order struct {
-	Order_id      int       `json:"id" gorm:"primary_key"`
+	Order_id      int       `json:"order_id" gorm:"primary_key"`
 	Customer_name string    `json:"customerName"`
 	Ordered_at    time.Time `json:"orderedAt"`
-	Items         []Item    `gorm:"foreignKey:Order_id"`
+	Items         []Item    `gorm:"foreignKey:Order_id;constraint:OnDelete:CASCADE"`
 }
 
 type OrderRequestDTO struct {

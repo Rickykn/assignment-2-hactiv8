@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/Rickykn/assignment-2-hactiv8.git/controllers"
 	"github.com/Rickykn/assignment-2-hactiv8.git/models"
@@ -35,12 +36,33 @@ func GetAllOrder(c *gin.Context) {
 
 	result := controllers.GetOrder()
 
-	fmt.Println(result)
-
 	c.JSON(http.StatusCreated, gin.H{
-		"message":     "Success Create Order",
+		"message":     "Get Data Success",
 		"status code": http.StatusCreated,
 		"data":        result,
+	})
+
+}
+
+func DeleteOrder(c *gin.Context) {
+	id := c.Param("id")
+	convId, _ := strconv.Atoi(id)
+
+	i := controllers.DeleteOrder(convId)
+
+	fmt.Println(i)
+
+	if i == 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"message":     "Failed Delete Order",
+			"status code": http.StatusOK,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":     "Success Delete Order",
+		"status code": http.StatusOK,
 	})
 
 }
